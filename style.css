@@ -858,11 +858,6 @@ body::-webkit-scrollbar {
         padding: 20px 15px;
         margin: 10px;
     }
-    
-    .cursor-dot,
-    .cursor-outline {
-        display: none; /* Hide custom cursor on mobile */
-    }
 }
 
 /* Extra Small Mobile */
