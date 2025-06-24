@@ -11,20 +11,19 @@
 <body>
     <div class="navbar">
         <div class="logo">Teenager's</div>
-        <!-- <nav>
+        <nav>
             <ul class="items">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#description">Description</a></li>
-                <li><a href="#project">Project</a></li>
-                <li><a href="#studio">Studio</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#">Our Story</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Your Styles</a></li>
+                <li><a href="#">Testimoni</a></li>
+                <li><a href="#">Get In Touch</a></li>
             </ul>
-        </nav> -->
+        </nav>
     </div>
     <section id="home">
         <div class="container">
             <div class="left-section">
-
                 <div class="main-content">
                     <h1 class="title floating">
                         Embrace your<br>
@@ -47,123 +46,81 @@
 
             <div class="right-section">
                 <div class="hero-image">
-                    <img src="img/model.jpg" alt="Model Teenagers">
-                    <!-- <div class="face-overlay"></div> -->
-                    <!-- <div class="geometric-lines">
-                        <div class="line"></div>
-                        <div class="line"></div>
-                        <div class="line"></div>
-                    </div> -->
+                    <img id="main-hero-image" src="img/Rectangle 2.png" alt="Model Teenagers">
                 </div>
-
-                <!-- <div class="contact-info">
-                    <div>THE WILD</div>
-                    <div>STUDIO</div>
-                </div> -->
+                <div class="thumbnail-list">
+                    <img src="img/model.jpg" alt="Thumbnail 1" onclick="changeHeroImage('img/model.jpg')">
+                    <img src="img/Rectangle 2.png" alt="Thumbnail 2" onclick="changeHeroImage('img/Rectangle 2.png')">
+                    <img src="img/two-people.png" alt="Thumbnail 3" onclick="changeHeroImage('img/two-people.png')">
+                </div>
             </div>
         </div>
     </section>
 
     <section id="description">
         <div class="description-container">
-            <div class="section section-story">
-                <h2 class="section-title">Our Story</h2>
-                <div class="section-content">
-                    Kami percaya bahwa gaya adalah ekspresi jujur dari jiwa muda — bebas, bersih, dan berani. Dengan desain minimalis namun penuh karakter, koleksi kami dirancang untuk menghidupkan ulang arti 'simple is powerful'.
-                </div>
-            </div>
-
-            <div class="section section-vision">
-                <h2 class="section-title">Our Vision</h2>
-                <div class="section-content">
-                    Teenagers lahir untuk mendukung generasi muda tampil percaya diri tanpa harus mengikuti tren yang membatasi. Kami ingin menciptakan ruang di mana gaya menjadi bentuk ekspresi diri yang jujur dan bebas dengan pendekatan minimalis, modern, dan berkarakter.
-                </div>
-            </div>
-
-            <div class="section section-mission">
-                <h2 class="section-title">Our Mission</h2>
-                <div class="section-content">
-                    Kami percaya bahwa fashion bukan sekadar penampilan, melainkan cerminan dari keberanian memilih. Teenagers hadir untuk menghadirkan pilihan pakaian yang simpel, versatile, dan nyaman, agar setiap anak muda bisa meredefinisi gaya mereka dengan cara yang mudah, stylish, dan tetap autentik.
-                </div>
-            </div>
+            <table>
+                <tr class="section-story">
+                    <td class="section-title">
+                        <h2>Our Story</h2>
+                    </td>
+                    <td colspan="2" class="section-content">
+                        <p>
+                            Kami percaya bahwa gaya adalah ekspresi jujur dari jiwa muda — bebas, bersih, dan berani.
+                            Dengan desain minimalis namun penuh karakter, koleksi kami dirancang untuk menghidupkan
+                            ulang arti 'simple is powerful'.
+                        </p>
+                    </td>
+                </tr>
+                <tr class="section-vision">
+                    <td></td>
+                    <td class="section-title">
+                        <h2>Our Vision</h2>
+                    </td>
+                    <td class="section-content">
+                        <p>
+                            Teenagers lahir untuk mendukung generasi muda tampil percaya diri tanpa harus mengikuti tren
+                            yang membatasi. Kami ingin menciptakan ruang di mana gaya menjadi bentuk ekspresi diri yang
+                            jujur dan bebas dengan pendekatan minimalis, modern, dan berkarakter.
+                        </p>
+                    </td>
+                </tr>
+                <tr class="section-mission">
+                    <td></td>
+                    <td class="section-title">
+                        <h2>Our Mission</h2>
+                    </td>
+                    <td class="section-content">
+                        <p>
+                            Kami percaya bahwa fashion bukan sekadar penampilan, melainkan cerminan dari keberanian
+                            memilih. Teenagers hadir untuk menghadirkan pilihan pakaian yang simpel, versatile, dan
+                            nyaman, agar setiap anak muda bisa meredefinisi gaya mereka dengan cara yang mudah, stylish,
+                            dan tetap autentik.
+                        </p>
+                    </td>
+                </tr>
+            </table>
         </div>
     </section>
 
-    <!-- <script>
-        // Custom cursor
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorOutline = document.querySelector('.cursor-outline');
+    <script>
+        // Function to change the hero image when clicking thumbnails
+        function changeHeroImage(newImageSrc) {
+            document.getElementById('main-hero-image').src = newImageSrc;
+        }
 
-        document.addEventListener('mousemove', (e) => {
-            const x = e.clientX;
-            const y = e.clientY;
+        // Optional: Auto-rotate images every few seconds
+        let currentImageIndex = 0;
+        const imageSources = ['img/model.jpg', 'img/Rectangle 2.png', 'img/two-people.png'];
+        
+        function rotateHeroImages() {
+            currentImageIndex = (currentImageIndex + 1) % imageSources.length;
+            document.getElementById('main-hero-image').src = imageSources[currentImageIndex];
+        }
 
-            cursorDot.style.left = x + 'px';
-            cursorDot.style.top = y + 'px';
-
-            cursorOutline.style.left = (x - 20) + 'px';
-            cursorOutline.style.top = (y - 20) + 'px';
-        });
-
-        // Cursor hover effects
-        const hoverElements = document.querySelectorAll('a, button, .cta-button');
-
-        hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursorOutline.style.transform = 'scale(1.5)';
-                cursorDot.style.transform = 'scale(2)';
-            });
-
-            el.addEventListener('mouseleave', () => {
-                cursorOutline.style.transform = 'scale(1)';
-                cursorDot.style.transform = 'scale(1)';
-            });
-        });
-
-        // Smooth scrolling for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                // For demo purposes, just add a subtle animation
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                }, 100);
-            });
-        });
-
-        // Parallax effect on scroll
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.identity-text');
-            const speed = scrolled * 0.5;
-            parallax.style.transform = `translateY(${speed}px)`;
-        });
-
-        // Add some interactive elements
-        const heroImage = document.querySelector('.hero-image');
-        heroImage.addEventListener('mousemove', (e) => {
-            const rect = heroImage.getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width) * 100;
-            const y = ((e.clientY - rect.top) / rect.height) * 100;
-
-            heroImage.style.background = `radial-gradient(circle at ${x}% ${y}%, #444 0%, #000 70%)`;
-        });
-
-        // Reset background on mouse leave
-        heroImage.addEventListener('mouseleave', () => {
-            heroImage.style.background = `radial-gradient(circle at 30% 50%, #333 0%, #000 70%)`;
-        });
-
-        // Add loading animation
-        window.addEventListener('load', () => {
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 0.5s ease';
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-            }, 100);
-        });
-    </script> -->
+        // Uncomment below to enable auto-rotation every 3 seconds
+        setInterval(rotateHeroImages, 3000);
+    </script>
 </body>
 
 </html>

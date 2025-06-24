@@ -5,6 +5,7 @@
 
 :root {
     --primary-color: #303030;
+    --black-color: #000;
     --white-color: #fff;
     --gradient-white-color: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
 }
@@ -41,7 +42,7 @@ body::-webkit-scrollbar {
     width: 100%;
     padding: 20px 60px;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     z-index: 10;
     background: transparent; /* atau rgba(255,255,255,0.5) jika ingin semi transparan */
@@ -50,6 +51,7 @@ body::-webkit-scrollbar {
 .navbar .logo {
     font-size: 24px;
     font-weight: 600;
+    margin-right: 50px;
     color: #000;
 }
 
@@ -64,13 +66,14 @@ body::-webkit-scrollbar {
 
 .navbar .items a {
     text-decoration: none;
-    color: #000;
+    color: var(--black-color);
     font-weight: 500;
     transition: color 0.3s;
 }
 
 .navbar .items a:hover {
-    color: #555;
+    color: var(--primary-color);
+    box-shadow: 0px 0px 10px 0px #303030;
 }
 
 
@@ -102,35 +105,6 @@ body::-webkit-scrollbar {
     pointer-events: none;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 40px;
-    z-index: 2;
-    position: relative;
-}
-
-
-.nav {
-    display: flex;
-    gap: 40px;
-}
-
-.nav a {
-    text-decoration: none;
-    color: #666;
-    font-size: 14px;
-    font-weight: 300;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: color 0.3s ease;
-}
-
-.nav a:hover {
-    color: #000;
-}
-
 .main-content {
     flex: 1;
     display: flex;
@@ -141,7 +115,7 @@ body::-webkit-scrollbar {
 }
 
 .title {
-    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-size: 4.5rem;
     font-weight: 400;
     line-height: 0.9;
     color: var(--primary-color);
@@ -154,10 +128,10 @@ body::-webkit-scrollbar {
 }
 
 .subtitle {
-    font-size: 16px;
+    font-size: 1.2rem;
     color: var(--primary-color);
     /* line-height: 1.6; */
-    max-width: 400px;
+    max-width: 480px;
     margin-bottom: 60px;
     font-weight: 400;
 }
@@ -201,6 +175,7 @@ body::-webkit-scrollbar {
 
 .collect-button:hover {
     color: #f5f5f5;
+    box-shadow: 0 0 5px rgba(127, 127, 127, 0.7);
 }
 
 .buy-button {
@@ -220,6 +195,7 @@ body::-webkit-scrollbar {
     position: relative;
     overflow: hidden;
     z-index: 1;
+    animation: glow 1.5s ease-in-out infinite alternate;
 }
 
 .buy-button::before{
@@ -262,39 +238,80 @@ body::-webkit-scrollbar {
 }
 
 .hero-image img {
+    display: block;
     width: 100%;
     height: 100%;
     margin-right: 0;
 }
 
+.thumbnail-list {
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.thumbnail-list img {
+    cursor: pointer;
+    width: 90px;
+    height: auto;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: ease 0.3s;
+}
+
+.thumbnail-list img:hover {
+    transition: ease 0.3s;
+    transform: scale(1.05);
+    opacity: 0.9;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+}
+
+.thumbnail-list img:active {
+    transform: scale(0.95);
+}
+
 .description-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  padding: 60px;
-  background-color: #f9f9f9;
+    min-height: 100vh;
+    padding: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.section {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
+.description-container table tr {
+    vertical-align: top;
+    height: 150px;
 }
 
-.section-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
+.description-container table tr td.section-title {
+    align-items: start;
+    width: 450px;
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: slideIn 0.5s forwards;
 }
 
-.section-content {
-  font-size: 14px;
-  line-height: 1.6;
-  color: #333;
+.description-container table .section-story td.section-title {
+    animation-delay: 0.3s;
+
 }
 
+.description-container table .section-vision td.section-title {
+    animation-delay: 0.6s;
 
+}
 
+.description-container table .section-mission td.section-title {
+    animation-delay: 0.9s;
+
+}
+
+.description-container table tr td.section-content {
+    font-size: 1.2rem;
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -337,19 +354,24 @@ body::-webkit-scrollbar {
 
 /* Animations */
 @keyframes slideIn {
-    from {
-        transform: scaleX(0);
-        opacity: 0;
-    }
     to {
-        transform: scaleX(1);
-        opacity: 0.3;
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 
 @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px rgba(127, 127, 127, 0.7);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(51, 51, 51, 0.9);
+  }
 }
 
 .floating {
