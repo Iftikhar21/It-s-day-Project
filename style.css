@@ -42,6 +42,7 @@ body::-webkit-scrollbar {
     width: 100%;
     padding: 20px 60px;
     display: flex;
+    /* justify-content: space-between; */
     align-items: center;
     z-index: 10;
     background: transparent;
@@ -65,6 +66,7 @@ body::-webkit-scrollbar {
 
 .navbar .items a {
     text-decoration: none;
+    position: relative;
     color: var(--black-color);
     font-weight: 500;
     transition: color 0.3s;
@@ -72,7 +74,21 @@ body::-webkit-scrollbar {
 
 .navbar .items a:hover {
     color: var(--primary-color);
-    box-shadow: 0px 0px 10px 0px #303030;
+}
+
+.navbar .items a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.navbar .items a:hover::after {
+    width: 100%;
 }
 
 .container {
