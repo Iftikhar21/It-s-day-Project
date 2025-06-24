@@ -19,20 +19,13 @@
 body {
     font-family: 'Satoshi', sans-serif;
     overflow-x: hidden;
-    background: var(--gradient-white-color);
+    background: var(--white-color);
 }
 
 body::-webkit-scrollbar {
     width: 0;
     height: 0;
     overflow-y: hidden;
-}
-
-.body {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    background: #eee;   
 }
 
 .navbar {
@@ -160,7 +153,7 @@ body::-webkit-scrollbar {
     border: 2px solid #333;
     color: #333;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 1rem;
     font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
@@ -186,47 +179,29 @@ body::-webkit-scrollbar {
 .collect-button:hover {
     color: #f5f5f5;
     box-shadow: 0 0 5px rgba(127, 127, 127, 0.7);
-    transform: scale(1.05);
+    /* transform: scale(1.05); */
 }
 
 .buy-button {
     align-self: flex-start;
     padding: 15px 30px;
     width: 250px;
-    background: linear-gradient(90deg,rgba(48, 48, 48, 1) 0%, rgba(100, 100, 100, 1) 100%);
-    border: 2px solid #333;
+    background: linear-gradient(to right, #646464 100%, #303030 100%);
+    border: 3px solid #9a9a9a;
     color: #f5f5f5;
     text-decoration: none;
     text-align: center;
-    font-size: 14px;
+    font-size: 1rem;
     font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
     z-index: 1;
-    animation: glow 1.5s ease-in-out infinite alternate;
-}
-
-.buy-button::before{
-    content: '';
-    position: absolute;
-    top: 0;
-    right: -100%;
-    width: 100%;
-    height: 100%;
-    background: #f5f5f5;
-    transition: right 0.3s ease;
-    z-index: -1;
-}
-
-.buy-button:hover::before {
-    right: 0;
 }
 
 .buy-button:hover {
-    color: var(--primary-color);
-    box-shadow: 0 0 5px rgba(127, 127, 127, 0.7);
-    transform: scale(1.05);
+    /* transform: scale(1.05); */
+    box-shadow: inset 0px -50px 50px -30px #f0d11f7a;
 }
 
 /* Right Section */
@@ -367,6 +342,95 @@ body::-webkit-scrollbar {
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
+
+
+/* Trend Section */
+#trend {
+    height: 100vh;
+    position: relative;
+    background: url("img/GAMBAR10.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* padding: 40px; */
+}
+
+.trend-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.box-1 {
+    background: var(--white-color);
+    backdrop-filter: blur(10px);
+    padding: 40px 30px;
+    max-width: 500px;
+    border-radius: 0;
+    /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.box-2 {
+    background: var(--white-color);
+    backdrop-filter: blur(10px);
+    padding: 30px 25px;
+    max-width: 380px;
+    border-radius: 0;
+    /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); */
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.box-1 .title {
+    font-size: 2.2rem;
+    font-weight: 300;
+    line-height: 1.2;
+    color: #333;
+    margin-bottom: 0;
+    letter-spacing: -0.5px;
+}
+
+.box-1 .title span {
+    font-weight: 700;
+    color: #333;
+}
+
+.box-2 .title {
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #555;
+    margin-bottom: 20px;
+    letter-spacing: 0.2px;
+}
+
+.box-2 a {
+    color: #333;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-bottom: 1px solid #333;
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.box-2 a:hover {
+    color: #666;
+    border-bottom-color: #666;
+}
+
+.box-2 a::after {
+    content: "";
+    font-size: 0.8rem;
+    margin-left: 5px;
+}
+
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
