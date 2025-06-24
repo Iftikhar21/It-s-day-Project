@@ -42,10 +42,9 @@ body::-webkit-scrollbar {
     width: 100%;
     padding: 20px 60px;
     display: flex;
-    /* justify-content: space-between; */
     align-items: center;
     z-index: 10;
-    background: transparent; /* atau rgba(255,255,255,0.5) jika ingin semi transparan */
+    background: transparent;
 }
 
 .navbar .logo {
@@ -76,7 +75,6 @@ body::-webkit-scrollbar {
     box-shadow: 0px 0px 10px 0px #303030;
 }
 
-
 .container {
     min-height: 100vh;
     display: grid;
@@ -101,7 +99,6 @@ body::-webkit-scrollbar {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="0.5" fill="%23000" opacity="0.03"/><circle cx="80" cy="40" r="0.3" fill="%23000" opacity="0.02"/><circle cx="40" cy="80" r="0.4" fill="%23000" opacity="0.025"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
     pointer-events: none;
 }
 
@@ -130,7 +127,6 @@ body::-webkit-scrollbar {
 .subtitle {
     font-size: 1.2rem;
     color: var(--primary-color);
-    /* line-height: 1.6; */
     max-width: 480px;
     margin-bottom: 60px;
     font-weight: 400;
@@ -150,8 +146,6 @@ body::-webkit-scrollbar {
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -161,21 +155,22 @@ body::-webkit-scrollbar {
     content: '';
     position: absolute;
     top: 0;
-    left: -100%;
+    right: -100%;
     width: 100%;
     height: 100%;
     background: #333;
-    transition: left 0.3s ease;
+    transition: right 0.3s ease;
     z-index: -1;
 }
 
 .collect-button:hover::before {
-    left: 0;
+    right: 0;
 }
 
 .collect-button:hover {
     color: #f5f5f5;
     box-shadow: 0 0 5px rgba(127, 127, 127, 0.7);
+    transform: scale(1.05);
 }
 
 .buy-button {
@@ -184,13 +179,11 @@ body::-webkit-scrollbar {
     width: 250px;
     background: linear-gradient(90deg,rgba(48, 48, 48, 1) 0%, rgba(100, 100, 100, 1) 100%);
     border: 2px solid #333;
-    color: #f5f5f5; /* Changed to white/light color */
+    color: #f5f5f5;
     text-decoration: none;
     text-align: center;
     font-size: 14px;
     font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -205,7 +198,7 @@ body::-webkit-scrollbar {
     right: -100%;
     width: 100%;
     height: 100%;
-    background: #f5f5f5; /* White background for hover */
+    background: #f5f5f5;
     transition: right 0.3s ease;
     z-index: -1;
 }
@@ -215,7 +208,9 @@ body::-webkit-scrollbar {
 }
 
 .buy-button:hover {
-    color: var(--primary-color); /* Dark text on hover */
+    color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(127, 127, 127, 0.7);
+    transform: scale(1.05);
 }
 
 /* Right Section */
@@ -244,6 +239,7 @@ body::-webkit-scrollbar {
     margin-right: 0;
 }
 
+/* Thumbnail Specific Styles */
 .thumbnail-list {
     position: absolute;
     right: 50px;
@@ -259,7 +255,8 @@ body::-webkit-scrollbar {
     height: auto;
     border-radius: 4px;
     cursor: pointer;
-    transition: ease 0.3s;
+    border: 2px solid transparent;
+    transition: opacity 0.3s ease, border 0.3s ease, transform 0.3s ease;
 }
 
 .thumbnail-list img:hover {
@@ -273,6 +270,11 @@ body::-webkit-scrollbar {
     transform: scale(0.95);
 }
 
+.thumbnail-list img.animate-in:first-child {
+    border-color: var(--black-color);
+}
+
+/* Description Container Styles */
 .description-container {
     min-height: 100vh;
     padding: 60px;
@@ -281,36 +283,73 @@ body::-webkit-scrollbar {
     align-items: center;
 }
 
+.description-container table {
+    width: 100%;
+}
+
 .description-container table tr {
     vertical-align: top;
     height: 150px;
 }
 
-.description-container table tr td.section-title {
-    align-items: start;
-    width: 450px;
+/* Animation Base States */
+.description-container table tr td.section-title,
+.description-container table tr td.section-content,
+.animate-on-scroll,
+.thumbnail-list img {
     opacity: 0;
+    will-change: opacity, transform; /* Optimize for animations */
+}
+
+/* Title Animation */
+.description-container table tr td.section-title {
+    width: 450px;
     transform: translateX(-50px);
-    animation: slideIn 0.5s forwards;
+    transition: all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-.description-container table .section-story td.section-title {
-    animation-delay: 0.3s;
-
-}
-
-.description-container table .section-vision td.section-title {
-    animation-delay: 0.6s;
-
-}
-
-.description-container table .section-mission td.section-title {
-    animation-delay: 0.9s;
-
-}
-
+/* Content Animation */
 .description-container table tr td.section-content {
     font-size: 1.2rem;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Animated States */
+.description-container table tr td.section-title.animate-in,
+.description-container table tr td.section-content.animate-in,
+.animate-on-scroll.animate-in,
+.thumbnail-list img.animate-in {
+    opacity: 1;
+    transform: translate(0);
+}
+
+/* Staggered Animation Delays */
+.description-container table tr.section-story td.section-title.animate-in {
+    transition-delay: 0.1s;
+}
+.description-container table tr.section-story td.section-content.animate-in {
+    transition-delay: 0.2s;
+}
+
+.description-container table tr.section-vision td.section-title.animate-in {
+    transition-delay: 0.3s;
+}
+.description-container table tr.section-vision td.section-content.animate-in {
+    transition-delay: 0.4s;
+}
+
+.description-container table tr.section-mission td.section-title.animate-in {
+    transition-delay: 0.5s;
+}
+.description-container table tr.section-mission td.section-content.animate-in {
+    transition-delay: 0.6s;
+}
+
+/* General Animate-on-scroll Elements */
+.animate-on-scroll {
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 /* Responsive Design */
@@ -366,12 +405,12 @@ body::-webkit-scrollbar {
 }
 
 @keyframes glow {
-  from {
+    from {
     box-shadow: 0 0 5px rgba(127, 127, 127, 0.7);
-  }
-  to {
+    }
+    to {
     box-shadow: 0 0 20px rgba(51, 51, 51, 0.9);
-  }
+    }
 }
 
 .floating {
