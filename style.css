@@ -650,7 +650,8 @@ body::-webkit-scrollbar {
     
     .pick-card img {
         will-change: transform;
-=======
+    }
+}
 /* ========== RESPONSIVE DESIGN ========== */
 
 /* Large Tablets & Small Desktops */
